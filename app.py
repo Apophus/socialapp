@@ -1,9 +1,10 @@
 #!usr/bin/python
 
-from flask import Flask, g
+from flask import Flask, g, render_template, redirect, url_for, flash
 from flask.ext.login import LoginManager
 
 import models
+import forms
 
 DEBUG = True
 PORT = 8000
@@ -38,6 +39,25 @@ def after_request():
     return response
 
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = forms.RegisterForm()
+    if form.validate_on_submit():
+        flash("you are registered", "success")
+        models.User.create_User(
+            username=form.username.data,
+            email=form.email.data,
+            password=form.password.data
+        )
+        return redirect(url_for('index'))
+    return render_template('register.html', form=form)
+
+
+@app.route('/')
+def index():
+    return 'Hey'
+
+
 if __name__ == '__main__':
     models.initialize()
     models.User.create_user(
@@ -48,4 +68,3 @@ if __name__ == '__main__':
     )
 
     app.run(debug=DEBUG, port=PORT, host=HOST)
-
