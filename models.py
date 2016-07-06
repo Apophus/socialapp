@@ -4,9 +4,9 @@ import datetime
 
 from flask_bcrypt import generate_password_hash
 from flask.ext.login import UserMixin
-from peewee import *
+import peewee
 
-DATABASE = PostgresDatabase('social.db')
+DATABASE = peewee.PostgresqlDatabase('social.db', User='postgres')
 
 class User(UserMixin, Model):
     username = CharField(unique=True)

@@ -61,7 +61,7 @@ def index():
 if __name__ == '__main__':
     models.initialize()
     models.User.create_user(
-        name="Larrisa",
+        username="Larrisa",
         email="larrisa@gmail.com",
         password='password',
         admin=True
