@@ -30,3 +30,8 @@ def create_user(cls, username, email, password, admin=False):
         )
     except IntegrityError:
         raise ValueError('User already exists')
+
+def initialize():
+    DATABASE.connect()
+    DATABASE.create_tables([user], safe=True)
+    DATABASE.close()
