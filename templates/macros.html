@@ -1,0 +1,12 @@
+
+{% macro render_field(field) %}
+  <div class="field">
+     {% if field.errors %}
+        {% for error in field.errors %}
+           <div class="notification error">{{error}}</div>
+        {% end for %}
+     {% end if %}
+     {{ field(placeholder=field.label.text) }}
+    </div>
+
+{% end macro %}
