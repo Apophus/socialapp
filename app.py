@@ -8,7 +8,7 @@ import forms
 
 DEBUG = True
 PORT = 8000
-HOST='0.0.0.0'
+HOST = '0.0.0.0'
 
 app = Flask(__name__)
 app.secret_key ='hard to guess'

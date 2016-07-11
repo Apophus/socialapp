@@ -17,7 +17,7 @@ class User(UserMixin, Model):
 
 class meta:
     database = DATABASE
-    order_by = ('joined_at')
+    order_by = 'joined_at'
 
 @classmethod
 def create_user(cls, username, email, password, admin=False):
